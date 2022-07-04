@@ -8,6 +8,7 @@ const Product = require('../models/products');
 router.get('/', (req, res) => {
     Order.find()
       .select('_id product quantity')
+      .populate('product', 'name')//This uses the reference to the products schema we added in order schema, and populates this field corresponding to the way we have referenced it i.e. by _id in our case.
       .exec()
       .then((docs) => {
         res.status(200).json({
@@ -71,6 +72,7 @@ router.post('/', (req,res) => {
 router.get('/:orderId',  (req,res) => {
     Order.findById(req.params.orderId)
       .select("_id product quantity")
+      .populate('product')
       .exec()
       .then((doc) => {
         if (doc) {

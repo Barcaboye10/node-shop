@@ -10,6 +10,16 @@ const orderRoutes = require('./api/routes/orders');
 mongoose.connect('mongodb+srv://geekyFutbolist:29101998@cluster0.ro7ldje.mongodb.net/?retryWrites=true&w=majority');
 mongoose.Promise = global.Promise;
 
+/**
+ * below line makes the uploads folder publically available 
+ * so that we can put in the url we get in the 
+ * response GET request in products routes to see 
+ * the images.
+ * '/uploads' as first argument ensures that url having
+ * /uploads are parsed properly.
+ */
+app.use('/uploads', express.static('uploads'));
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
