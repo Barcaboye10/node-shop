@@ -8,7 +8,8 @@ const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users');
 
-mongoose.connect('mongodb+srv://geekyFutbolist:29101998@cluster0.ro7ldje.mongodb.net/?retryWrites=true&w=majority');
+mongoose.connect("mongodb+srv://geekyFutbolist:" +
+process.env.MONGO_ATLAS_PASSWORD + "@cluster0.ro7ldje.mongodb.net/?retryWrites=true&w=majority");
 mongoose.Promise = global.Promise;
 
 /**
